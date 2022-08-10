@@ -44,7 +44,7 @@ export const FeatureProfile = (): JSX.Element => {
   }
   return (
     <div
-      className="absolute bottom-0 right-0  w-[330px] items-center bg-black/80 px-[10px] text-[0.875rem] text-white"
+      className="absolute bottom-0 right-0  w-[330px] translate-y-[150px] items-center bg-black/80 px-[10px] text-[0.875rem] text-white"
       ref={featureProfileRef}
       onMouseOver={onMouseOver}
       onMouseLeave={onMouseLeave}
