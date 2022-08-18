@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
+import { useRef } from 'react'
 import UserIcon from '~~/assets/svgs/user-0edb86cb.svg'
 import { Item } from './Item'
-import { gsap } from 'gsap'
 
 const mocks = [
   {

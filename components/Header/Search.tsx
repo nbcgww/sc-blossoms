@@ -1,4 +1,3 @@
-import React from 'react'
 import SearchIcon from '~~/assets/svgs/search-dbfe5cbb.svg'
 
 const placeHolder = 'Search for artists, bands, tracks, podcasts'

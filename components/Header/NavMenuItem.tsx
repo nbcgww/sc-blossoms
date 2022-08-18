@@ -1,4 +1,3 @@
-import React from 'react'
 import { NAV } from '~~/mocks/header/nav'
 
 export const NavMenuItem = (): JSX.Element => {

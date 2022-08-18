@@ -1,4 +1,3 @@
-import React from 'react'
 import PeaceClound from '~~/assets/svgs/peace-cloud-28ad0963.svg'
 
 export const Logo = (): JSX.Element => {
