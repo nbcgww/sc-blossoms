@@ -14,7 +14,7 @@ interface IProps<T> {
 
 export const Item = ({ detail }: IProps<string>): JSX.Element => {
   return (
-    <div className="flex h-[50px]">
+    <div className="mb-[10px] flex h-[61px] border-b-[1px] border-[#333]  pb-[10px] last:border-b-[0px]">
       <img src={detail.avatar} className="mr-[10px] rounded-[50%]" />
       <div className="flex-1">
         <div>

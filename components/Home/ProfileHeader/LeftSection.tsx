@@ -10,7 +10,7 @@ export const LeftSection = () => {
   return (
     <>
       <div
-        className="top-1/2 mr-[30px] inline-block	 h-[200px] w-[200px] bg-cover"
+        className="top-1/2 mr-[30px] inline-block	 !h-[200px] !w-[200px] bg-cover"
         ref={avatarRef}
       ></div>
     </>

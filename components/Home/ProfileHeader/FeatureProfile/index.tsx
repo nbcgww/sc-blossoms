@@ -38,19 +38,19 @@ export const FeatureProfile = (): JSX.Element => {
   }
   const onMouseLeave = () => {
     gsap.to(featureProfileRef.current, {
-      translateY: 150,
+      translateY: 222,
       duration: 0.2,
     })
   }
   return (
     <div
-      className="absolute bottom-0 right-0  w-[330px] translate-y-[150px] items-center bg-black/80 px-[10px] text-[0.875rem] text-white"
+      className="absolute -bottom-[0px] right-[30px]  w-[330px] translate-y-[222px] items-center bg-black/80 px-[10px] text-[0.875rem] text-white"
       ref={featureProfileRef}
       onMouseOver={onMouseOver}
       onMouseLeave={onMouseLeave}
     >
-      <div className="flex h-[40px] items-center border-b-[1px] border-[#333]">
-        <UserIcon />
+      <div className="mt-[6px] mb-[10px] flex h-[32px] items-center border-b-[1px] border-[#333]">
+        <UserIcon className="mr-[10px] w-[15px]" />
         Featured profile
       </div>
       <div>
