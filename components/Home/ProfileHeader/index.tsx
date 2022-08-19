@@ -12,7 +12,7 @@ export const ProfileHeader = (): JSX.Element => {
 
   return (
     <div
-      className="relative mx-auto mt-[46px] h-[260px] w-[1240px] overflow-hidden p-[30px]"
+      className="relative mx-auto mt-[46px] h-[260px]  overflow-hidden p-[30px]"
       ref={profileHeaderRef}
     >
       <div className="relative flex h-full w-full justify-between">
