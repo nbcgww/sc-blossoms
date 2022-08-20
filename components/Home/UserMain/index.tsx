@@ -9,9 +9,9 @@ export const UserMain = (): JSX.Element => {
   return (
     <div className=" h-[800px] w-[850px] bg-fuchsia-200">
       <ul>
-        <li className="h-[197px] bg-violet-200">
+        <li className="flex h-[197px] w-full bg-violet-200">
           <div className="h-[160px] w-[160px]" ref={artworkRef}></div>
-          <div className="ml-[5px] "></div>
+          <div className="ml-[5px] h-full flex-1 bg-green-200"></div>
         </li>
       </ul>
     </div>
