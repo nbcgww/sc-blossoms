@@ -36,13 +36,14 @@ export const ProfileTabs = (): JSX.Element => {
     <ul className="flex font-[400]">
       {mocks.map((i) => (
         <li
+          key={i.id}
           className={clsx(
             'mx-[12px] h-full cursor-pointer text-[1.125rem]  first:mr-[12px] first:ml-[0px] last:mr-[0px] hover:border-b-[2px] hover:border-black',
             selected === i.tab && 'border-b-[2px] border-[#f50] text-[#f50]'
           )}
           onClick={() => selectTab(i.tab)}
         >
-          <Link key={i.id} href={i.url} passHref>
+          <Link href={i.url} passHref>
             <a className="block h-full">{i.title}</a>
           </Link>
         </li>
