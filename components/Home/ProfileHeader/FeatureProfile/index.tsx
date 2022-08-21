@@ -1,5 +1,6 @@
 import { gsap } from 'gsap'
-import { useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
+import { fromEvent } from 'rxjs'
 import UserIcon from '~~/assets/svgs/user-0edb86cb.svg'
 import { Item } from './Item'
 
@@ -30,24 +31,32 @@ const mocks = [
 export const FeatureProfile = (): JSX.Element => {
   const featureProfileRef = useRef<HTMLDivElement>(null)
 
-  const onMouseOver = () => {
+  useEffect(() => {
+    fromEvent(featureProfileRef.current!, 'mouseover').subscribe(() => {
+      onMouseOver()
+    })
+    fromEvent(featureProfileRef.current!, 'mouseleave').subscribe(() => {
+      onMouseLeave()
+    })
+  }, [])
+
+  const onMouseOver = useCallback(() => {
     gsap.to(featureProfileRef.current, {
       translateY: 0,
       duration: 0.2,
     })
-  }
-  const onMouseLeave = () => {
+  }, [])
+  const onMouseLeave = useCallback(() => {
     gsap.to(featureProfileRef.current, {
       translateY: 222,
       duration: 0.2,
     })
-  }
+  }, [])
+
   return (
     <div
       className="absolute -bottom-[0px] right-[30px]  w-[330px] translate-y-[222px] items-center bg-black/80 px-[10px] text-[0.875rem] text-white"
       ref={featureProfileRef}
-      onMouseOver={onMouseOver}
-      onMouseLeave={onMouseLeave}
     >
       <div className="mt-[6px] mb-[10px] flex h-[32px] items-center border-b-[1px] border-[#333]">
         <UserIcon className="mr-[10px] w-[15px]" />
