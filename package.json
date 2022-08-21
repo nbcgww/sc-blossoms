@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.4",
+    "@rematch/core": "^2.2.0",
     "clsx": "^1.2.1",
     "gsap": "^3.10.4",
     "next": "12.2.4",
