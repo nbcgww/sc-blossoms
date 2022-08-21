@@ -12,7 +12,7 @@ export const UserMain = (): JSX.Element => {
     <div className=" h-[800px] w-[850px] bg-fuchsia-200">
       <ul>
         <li className="flex h-[197px] w-full bg-violet-200">
-          <div className="h-[160px] w-[160px]" ref={artworkRef}></div>
+          <div className="h-[160px] w-[160px] bg-cover" ref={artworkRef}></div>
           <div className="ml-[5px] h-full flex-1 bg-green-200">
             <div className="h-[160px] w-full bg-purple-300 bg-cover bg-center" ref={visualRef}></div>
           </div>
