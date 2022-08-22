@@ -1,4 +1,5 @@
 import { ReactElement } from 'react'
+import { PlayControl } from '~~/components/Common/PlayControl'
 import { Header } from '~~/components/Header'
 
 type IProps = {
@@ -10,6 +11,7 @@ export const Main = ({ children }: IProps): JSX.Element => {
     <>
       <Header />
       <div className="mx-auto w-[1240px]">{children}</div>
+      <PlayControl />
     </>
   )
 }
