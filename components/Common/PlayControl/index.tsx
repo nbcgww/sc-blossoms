@@ -1,12 +1,12 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { memo, useCallback, useEffect, useRef, useState } from 'react'
+import { fromEvent } from 'rxjs'
 import LoopIcon from '~~/assets/svgs/loop.svg'
 import NextIcon from '~~/assets/svgs/next.svg'
+import PauseIcon from '~~/assets/svgs/pause.svg'
 import PlayIcon from '~~/assets/svgs/play.svg'
 import PreviousIcon from '~~/assets/svgs/previous.svg'
 import ShuffleIcon from '~~/assets/svgs/shuffle.svg'
 import { TimeLine } from './TimeLine'
-import PauseIcon from '~~/assets/svgs/pause.svg'
-import { fromEvent } from 'rxjs'
 
 export const PlayControl = (): JSX.Element => {
   const audioRef = useRef<HTMLAudioElement>(null)
@@ -24,7 +24,7 @@ export const PlayControl = (): JSX.Element => {
   }, [])
 
   useEffect(() => {
-    audioRef.current!.src = '/North Rebellion - Hold Me Tight.mp3'
+    audioRef.current!.src = '/KLYDIX - 誰も知らないそこへ (Feat Ooz) [VIP Mix].mp3'
 
     fromEvent(audioRef.current!, 'timeupdate').subscribe(() => {
       updateTime()
@@ -52,7 +52,7 @@ export const PlayControl = (): JSX.Element => {
           <LoopIcon />
         </div>
         <TimeLine total={totalTime} current={currentTime} />
-        <audio preload="auto" ref={audioRef} />
+        <audio preload="auto" ref={audioRef} loop />
       </div>
     </section>
   )
