@@ -15,7 +15,7 @@ export const PlayControl = (): JSX.Element => {
   const [totalTime, setTotalTime] = useState(0)
 
   useLayoutEffect(() => {
-    audioRef.current = new Audio('/KLYDIX - 誰も知らないそこへ (Feat Ooz) [VIP Mix].mp3')
+    audioRef.current = new Audio('/[YT2mp3.info] - KLYDIX - Virtual Isekai (UXN Release) (320kbps).mp3')
     audioRef.current.addEventListener('ended', () => {
       setIsPlay(false)
     })
