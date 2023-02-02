@@ -7,7 +7,7 @@ export const Search = (): JSX.Element => {
     <div className="flex h-full items-center justify-center">
       <div className="relative h-[30px] w-[300px]">
         <input type="text" className="h-full w-full rounded-md" />
-        <p className="absolute top-1/2 left-[10px] -translate-y-1/2 text-[0.9rem]">{placeHolder}</p>
+        <p className="absolute top-1/2 left-[10px] -translate-y-1/2 text-[0.8rem]">{placeHolder}</p>
         <SearchIcon className="absolute top-1/2 right-[10px] -translate-y-1/2" />
       </div>
     </div>
