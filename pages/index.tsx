@@ -1,21 +1,24 @@
-import { ReactElement, useEffect } from 'react'
+import { createAction } from '@reduxjs/toolkit'
+import { ReactElement } from 'react'
 import { ProfileHeader } from '~~/components/Home/ProfileHeader'
 import { SideBar } from '~~/components/Home/SideBar'
 import { UserInfoBar } from '~~/components/Home/UserInfoBar'
 import { UserMain } from '~~/components/Home/UserMain'
 import { Main } from '~~/layouts/Main'
-import { NextPageWithLayout } from './_app'
 import { useAppDispatch, useAppSelector } from '~~/store/hooks'
-import { createAction } from '@reduxjs/toolkit'
-import { FETCH_COLLECTION_SAGA_TYPE } from '~~/store/saga/collection'
-import { useSelector } from 'react-redux'
-import { fetchCollectionStart, selectCollectionState } from '~~/store/slice/collection'
+import { fetchCollectionStart, observableFetchCollectionStart } from '~~/store/slice/collection'
+import { fetchCollectionUsingThunkMiddleware } from '~~/store/thunk'
+import { NextPageWithLayout } from './_app'
 
 const Home: NextPageWithLayout = (): JSX.Element => {
   const dispatch = useAppDispatch()
   const collection = useAppSelector((state) => state.collection.data)
 
-  const fetch = () => dispatch(createAction(fetchCollectionStart.toString())())
+  const fetchSaga = () => dispatch(createAction(fetchCollectionStart.toString())())
+
+  const fetchThunk = () => dispatch(fetchCollectionUsingThunkMiddleware())
+
+  const fetchObservable = () => dispatch(createAction(observableFetchCollectionStart.toString())())
   return (
     <>
       <div>
@@ -27,12 +30,28 @@ const Home: NextPageWithLayout = (): JSX.Element => {
             <SideBar />
           </div>
         </div>
-        <button
-          onClick={fetch}
-          className="fixed bottom-[100px] left-[10px]   rounded-[15px] bg-[#3cff00] py-[10px] px-[20px]  text-[.8rem] active:bg-[#a0f]"
-        >
-          Fetch collection
-        </button>
+        <div className="fixed bottom-[100px] left-[10px] gap-[10px]">
+          <button
+            onClick={fetchSaga}
+            className="   rounded-[15px] bg-[#3cff00] py-[10px] px-[20px]  text-[.8rem] active:bg-[#a0f]"
+          >
+            Fetch collection Saga
+          </button>
+
+          <button
+            onClick={fetchThunk}
+            className="  rounded-[15px] bg-[#3cff00] py-[10px] px-[20px]  text-[.8rem] active:bg-[#a0f]"
+          >
+            Fetch collection Thunk
+          </button>
+
+          <button
+            onClick={fetchObservable}
+            className="  rounded-[15px] bg-[#3cff00] py-[10px] px-[20px]  text-[.8rem] active:bg-[#a0f]"
+          >
+            Fetch collection Observable
+          </button>
+        </div>
       </div>
     </>
   )

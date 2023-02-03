@@ -6,19 +6,16 @@ import { fetchCollectionFailure, fetchCollectionStart, fetchCollectionSuccess } 
 
 // Our worker Saga: will perform the async increment task
 export function* collectionAsync(): any {
-  //   yield delay(1000)
-  console.log('HEHE')
   try {
     
     const { data } = yield call(axios.get, APP_API.collection)
     yield put({ type: fetchCollectionSuccess.toString(), payload: data })
-    console.log('DATA', data)
   } catch (error) {
     yield put({ type: fetchCollectionFailure.toString(), payload: error })
   }
 }
 
-// Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
+// Our watcher Saga: spawn a new incrementAsync task on each watchCollectionAsync
 export function* watchCollectionAsync() {
   yield takeLatest(fetchCollectionStart.toString(), collectionAsync)
 }
