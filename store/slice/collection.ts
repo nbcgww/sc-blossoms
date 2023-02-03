@@ -1,7 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { RootState } from '../index'
-import { FETCH_COLLECTION_SAGA_TYPE } from '../saga/collection'
 import { ICollection } from '~~/models/collection'
+import { RootState } from '../index'
 
 enum StatusEnum {
   idle = 'idle',
@@ -23,11 +22,16 @@ export const collectionSlice = createSlice({
   name: 'collection',
   initialState,
   reducers: {
-    [FETCH_COLLECTION_SAGA_TYPE.RECEIVED]: (state) => {
-      state.status = StatusEnum.pending
+    fetchCollectionStart: (state, action) => {
+      state.status = StatusEnum.idle
     },
-    [FETCH_COLLECTION_SAGA_TYPE.SUCCESS]: (state, action:PayloadAction<ICollection[]>) => {
-      console.log({action})
+
+    fetchCollectionSuccess: (state,action) => {
+      state.status = StatusEnum.pending
+      state.data = action.payload
+    },
+
+    fetchCollectionFailure: (state, action: PayloadAction<ICollection[]>) => {
       state.data = action.payload
       state.status = StatusEnum.fulfilled
     },
@@ -36,3 +40,4 @@ export const collectionSlice = createSlice({
 
 export const selectCollectionState = (state: RootState) => state.collection.data
 
+export const { fetchCollectionStart, fetchCollectionSuccess, fetchCollectionFailure } = collectionSlice.actions

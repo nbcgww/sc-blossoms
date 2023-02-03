@@ -9,16 +9,13 @@ import { useAppDispatch, useAppSelector } from '~~/store/hooks'
 import { createAction } from '@reduxjs/toolkit'
 import { FETCH_COLLECTION_SAGA_TYPE } from '~~/store/saga/collection'
 import { useSelector } from 'react-redux'
-import { selectCollectionState } from '~~/store/slice/collection'
+import { fetchCollectionStart, selectCollectionState } from '~~/store/slice/collection'
 
 const Home: NextPageWithLayout = (): JSX.Element => {
   const dispatch = useAppDispatch()
-  const collection = useAppSelector((state)=>state.collection.data)
-  useEffect(() => {
-    const fetchCollectionAction = createAction(FETCH_COLLECTION_SAGA_TYPE.RECEIVED)
-    console.log(fetchCollectionAction())
-    dispatch(fetchCollectionAction())
-  }, [dispatch])
+  const collection = useAppSelector((state) => state.collection.data)
+
+  const fetch = () => dispatch(createAction(fetchCollectionStart.toString())())
   return (
     <>
       <div>
@@ -30,6 +27,12 @@ const Home: NextPageWithLayout = (): JSX.Element => {
             <SideBar />
           </div>
         </div>
+        <button
+          onClick={fetch}
+          className="fixed bottom-[100px] left-[10px]   rounded-[15px] bg-[#3cff00] py-[10px] px-[20px]  text-[.8rem] active:bg-[#a0f]"
+        >
+          Fetch collection
+        </button>
       </div>
     </>
   )
