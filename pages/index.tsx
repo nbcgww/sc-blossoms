@@ -35,21 +35,21 @@ const Home: NextPageWithLayout = (): JSX.Element => {
             onClick={fetchSaga}
             className="   rounded-[15px] bg-[#3cff00] py-[10px] px-[20px]  text-[.8rem] active:bg-[#a0f]"
           >
-            Fetch collection Saga
+            Saga
           </button>
 
           <button
             onClick={fetchThunk}
             className="  rounded-[15px] bg-[#3cff00] py-[10px] px-[20px]  text-[.8rem] active:bg-[#a0f]"
           >
-            Fetch collection Thunk
+            Thunk
           </button>
 
           <button
             onClick={fetchObservable}
             className="  rounded-[15px] bg-[#3cff00] py-[10px] px-[20px]  text-[.8rem] active:bg-[#a0f]"
           >
-            Fetch collection Observable
+            Observable
           </button>
         </div>
       </div>
