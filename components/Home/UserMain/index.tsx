@@ -1,10 +1,14 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable @next/next/no-img-element */
 import moment from 'moment'
-import { useEffect, useRef } from 'react'
-import { collection } from '~~/mocks/header/collection'
+import { useRef } from 'react'
+import { ICollection } from '~~/models/collection'
 
-export const UserMain = (): JSX.Element => {
+interface IProps {
+  collection: ICollection[]
+}
+
+export const UserMain = ({ collection }: IProps): JSX.Element => {
   const artworkRef = useRef<HTMLDivElement>(null)
   const visualRef = useRef<HTMLDivElement>(null)
 

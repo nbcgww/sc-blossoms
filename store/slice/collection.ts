@@ -1,17 +1,21 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { AppState } from '../index'
-import { HYDRATE } from 'next-redux-wrapper'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { RootState } from '../index'
+import { FETCH_COLLECTION_SAGA_TYPE } from '../saga/collection'
+import { ICollection } from '~~/models/collection'
 
-// Type for our state
-export interface AuthState {
-  authState: boolean
+enum StatusEnum {
+  idle = 'idle',
+  pending = 'pending',
+  fulfilled = 'fulfilled',
+}
+export interface CollectionState {
+  data: ICollection[]
+  status: StatusEnum
 }
 
-// Initial state
-const initialState = {
+const initialState: CollectionState = {
   data: [],
-  status: 'idle',
-  hasErr:''
+  status: StatusEnum.idle,
 }
 
 // Actual Slice
@@ -19,15 +23,16 @@ export const collectionSlice = createSlice({
   name: 'collection',
   initialState,
   reducers: {
-    // Special reducer for hydrating the state. Special case for next-redux-wrapper
-    // extraReducers: {
-
-    // },
+    [FETCH_COLLECTION_SAGA_TYPE.RECEIVED]: (state) => {
+      state.status = StatusEnum.pending
+    },
+    [FETCH_COLLECTION_SAGA_TYPE.SUCCESS]: (state, action:PayloadAction<ICollection[]>) => {
+      console.log({action})
+      state.data = action.payload
+      state.status = StatusEnum.fulfilled
+    },
   },
 })
 
-// export const {  } = collectionSlice.actions
+export const selectCollectionState = (state: RootState) => state.collection.data
 
-export const selectCollectionState = (state: AppState) => state.collection.data
-
-export default collectionSlice.reducer

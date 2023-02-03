@@ -5,29 +5,20 @@ import { UserInfoBar } from '~~/components/Home/UserInfoBar'
 import { UserMain } from '~~/components/Home/UserMain'
 import { Main } from '~~/layouts/Main'
 import { NextPageWithLayout } from './_app'
-import { useDispatch } from 'react-redux'
-import { wrapper } from '~~/store'
-import axios from 'axios'
-import { APP_API } from '~~/api'
-import { FECTH_COLLECTION } from '~~/store/saga/collection'
+import { useAppDispatch, useAppSelector } from '~~/store/hooks'
 import { createAction } from '@reduxjs/toolkit'
-
-export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ params }) => {
-  const fetchCollectionAction = createAction(FECTH_COLLECTION)
-  console.log('fetchCollectionAction', fetchCollectionAction)
-  store.dispatch(fetchCollectionAction)
-  // we can set the initial state from here
-  // we are setting to false but you can run your custom logic here
-  // await store.dispatch(setAuthState(false))
-  console.log('State on server', store.getState())
-  return {
-    props: {
-      authState: false,
-    },
-  }
-})
+import { FETCH_COLLECTION_SAGA_TYPE } from '~~/store/saga/collection'
+import { useSelector } from 'react-redux'
+import { selectCollectionState } from '~~/store/slice/collection'
 
 const Home: NextPageWithLayout = (): JSX.Element => {
+  const dispatch = useAppDispatch()
+  const collection = useAppSelector((state)=>state.collection.data)
+  useEffect(() => {
+    const fetchCollectionAction = createAction(FETCH_COLLECTION_SAGA_TYPE.RECEIVED)
+    console.log(fetchCollectionAction())
+    dispatch(fetchCollectionAction())
+  }, [dispatch])
   return (
     <>
       <div>
@@ -35,7 +26,7 @@ const Home: NextPageWithLayout = (): JSX.Element => {
         <div className="bg-white px-[30px]">
           <UserInfoBar />
           <div className="mt-[20px] flex justify-between">
-            <UserMain />
+            <UserMain collection={collection} />
             <SideBar />
           </div>
         </div>
