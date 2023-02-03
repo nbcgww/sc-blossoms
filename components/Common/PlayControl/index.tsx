@@ -1,5 +1,4 @@
-import { memo, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { fromEvent } from 'rxjs'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import LoopIcon from '~~/assets/svgs/loop.svg'
 import NextIcon from '~~/assets/svgs/next.svg'
 import PauseIcon from '~~/assets/svgs/pause.svg'
@@ -14,7 +13,7 @@ export const PlayControl = (): JSX.Element => {
   const [currentTime, setCurrentTime] = useState(0)
   const [totalTime, setTotalTime] = useState(0)
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     audioRef.current = new Audio('/[YT2mp3.info] - KLYDIX - Virtual Isekai (UXN Release) (320kbps).mp3')
     audioRef.current.addEventListener('ended', () => {
       setIsPlay(false)
