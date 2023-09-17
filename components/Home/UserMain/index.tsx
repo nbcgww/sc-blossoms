@@ -2,17 +2,18 @@
 /* eslint-disable @next/next/no-img-element */
 import moment from 'moment'
 import { useEffect, useRef, useState } from 'react'
+import { collection as collectionList } from '../../../mocks/header/collection'
 
 export const UserMain = (): JSX.Element => {
   const artworkRef = useRef<HTMLDivElement>(null)
   const visualRef = useRef<HTMLDivElement>(null)
 
-  const [collection, setCollection] = useState([])
+  const [collection, setCollection] = useState<typeof collectionList>([])
 
   useEffect(() => {
     ;(async () => {
       const rs = await fetch('https://mocki.io/v1/41dd8956-2012-47a7-a1d4-c32530fa9105')
-      const { collection } = await rs.json()
+      const { collection }: { collection: typeof collectionList } = await rs.json()
 
       setCollection(collection)
     })()

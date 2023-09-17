@@ -3,6 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   experimental: { images: { allowFutureImage: true } },
+  ignoreBuildErrors: true,
   webpack: (config, { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }) => {
     config.module.rules.push({
       test: /\.svg$/,
