@@ -1,12 +1,22 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable @next/next/no-img-element */
 import moment from 'moment'
-import { useEffect, useRef } from 'react'
-import { collection } from '~~/mocks/header/collection'
+import { useEffect, useRef, useState } from 'react'
 
 export const UserMain = (): JSX.Element => {
   const artworkRef = useRef<HTMLDivElement>(null)
   const visualRef = useRef<HTMLDivElement>(null)
+
+  const [collection, setCollection] = useState([])
+
+  useEffect(() => {
+    ;(async () => {
+      const rs = await fetch('https://mocki.io/v1/41dd8956-2012-47a7-a1d4-c32530fa9105')
+      const { collection } = await rs.json()
+
+      setCollection(collection)
+    })()
+  }, [])
 
   return (
     <div className=" w-[850px] ">
@@ -48,7 +58,7 @@ export const UserMain = (): JSX.Element => {
                       </g>
                     </svg>
                   </div>
-                  <div className="flex flex-col gap-[5px]">
+                  <div className="flex flex-col items-start gap-[5px]">
                     <p className="bg-black/60 px-[10px] text-[.8rem] text-white">{user.username}</p>
                     <p className="bg-black/60 px-[10px] text-white ">{title}</p>
                   </div>
