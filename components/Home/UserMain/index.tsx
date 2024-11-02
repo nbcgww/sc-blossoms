@@ -12,7 +12,7 @@ export const UserMain = (): JSX.Element => {
 
   useEffect(() => {
     ;(async () => {
-      const rs = await fetch('https://mocki.io/v1/41dd8956-2012-47a7-a1d4-c32530fa9105')
+      const rs = await fetch('https://mocki.io/v1/5d5f0238-d06d-4816-81f3-c6bba6c65717')
       const { collection }: { collection: typeof collectionList } = await rs.json()
 
       setCollection(collection)
